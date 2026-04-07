@@ -4,7 +4,7 @@ info:
   title: Persons API
   description: |
     This is a template APIs.json for a persons API, to be used in storytelling, training, and knowledge bases.
-  
+
   version: 0.1.0
 
   contact:
@@ -14,7 +14,7 @@ info:
 
   termsOfService: http://example.com/terms/
 
-  license: 
+  license:
     name: Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International
     identifier: CC-BY-NC-SA-4.0
     url: https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en
@@ -30,7 +30,7 @@ servers:
 tags:
 
   - name: Persons
-    description: | 
+    description: |
       Placing and managing of persons placed for persons.
 
 paths:
@@ -62,7 +62,7 @@ paths:
                 $ref: '#/components/schemas/WrapperResponseCollection'
               examples:
                 PersonCollection:
-                  $ref: '#/components/examples/PersonCollection'                 
+                  $ref: '#/components/examples/PersonCollection'
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -75,7 +75,7 @@ paths:
           $ref: '#/components/responses/InternalServerError'
     post:
       operationId: createPerson
-      summary: Create Person
+      summary: Persons Create Person
       description: Creating a new person for sending to a recipient.
       tags:
         - Persons
@@ -89,13 +89,13 @@ paths:
               $ref: '#/components/schemas/Person'
             examples:
               Person:
-                $ref: '#/components/examples/Person'                           
+                $ref: '#/components/examples/Person'
           application/xml:
             schema:
               $ref: '#/components/schemas/Person'
             examples:
               Person:
-                $ref: '#/components/examples/Person'            
+                $ref: '#/components/examples/Person'
       responses:
         '201':
           description: Person Successful
@@ -105,19 +105,19 @@ paths:
                 $ref: '#/components/schemas/WrapperResponseObject'
               examples:
                 SinglePerson:
-                  $ref: '#/components/examples/SinglePerson'                    
+                  $ref: '#/components/examples/SinglePerson'
             application/xml:
               schema:
                 $ref: '#/components/schemas/WrapperResponseObject'
               examples:
                 SinglePerson:
-                  $ref: '#/components/examples/SinglePerson'        
+                  $ref: '#/components/examples/SinglePerson'
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
           $ref: '#/components/responses/Unauthorized'
         '403':
-          $ref: '#/components/responses/Forbidden'          
+          $ref: '#/components/responses/Forbidden'
         '404':
           $ref: '#/components/responses/NotFound'
         '409':
@@ -126,18 +126,17 @@ paths:
           $ref: '#/components/responses/TooManyRequests'
         '500':
           $ref: '#/components/responses/InternalServerError'
-  
   /persons/{personId}:
     parameters:
       - $ref: '#/components/parameters/PersonId'
     get:
-      summary: Retrieve Person
+      summary: Persons Retrieve Person
       description: Returns the details of a specific person.
       operationId: getPerson
       tags:
         - Persons
       security:
-        - apiKeys: []        
+        - apiKeys: []
       responses:
         '200':
           description: Person Details
@@ -171,7 +170,7 @@ paths:
           $ref: '#/components/responses/InternalServerError'
 
     put:
-      summary: Update Person
+      summary: Persons Update Person
       description: Updates a single person.
       operationId: updatePerson
       requestBody:
@@ -182,13 +181,13 @@ paths:
               $ref: '#/components/schemas/Person'
             examples:
               Person:
-                $ref: '#/components/examples/Person'                   
+                $ref: '#/components/examples/Person'
           application/xml:
             schema:
-              $ref: '#/components/schemas/Person'  
+              $ref: '#/components/schemas/Person'
             examples:
               Person:
-                $ref: '#/components/examples/Person'                       
+                $ref: '#/components/examples/Person'
       security:
         - apiKeys: []
       tags:
@@ -210,7 +209,7 @@ paths:
           $ref: '#/components/responses/InternalServerError'
 
     delete:
-      summary: Delete Person
+      summary: Persons Delete Person
       description: Deletes a person.
       operationId: deletePerson
       security:
@@ -239,9 +238,9 @@ paths:
       - $ref: '#/components/parameters/PersonId'
 
     put:
-      summary: Cancel Person
+      summary: Persons Cancel Person
       description: Cancels a single person.
-      operationId: sendPerson    
+      operationId: sendPerson
       requestBody:
         required: true
         content:
@@ -250,13 +249,13 @@ paths:
               $ref: '#/components/schemas/Person'
             examples:
               Person:
-                $ref: '#/components/examples/Person'                   
+                $ref: '#/components/examples/Person'
           application/xml:
             schema:
-              $ref: '#/components/schemas/Person'  
+              $ref: '#/components/schemas/Person'
             examples:
               Person:
-                $ref: '#/components/examples/Person'        
+                $ref: '#/components/examples/Person'
       security:
         - apiKeys: []
       tags:
@@ -275,7 +274,7 @@ paths:
         '429':
           $ref: '#/components/responses/TooManyRequests'
         '500':
-          $ref: '#/components/responses/InternalServerError'          
+          $ref: '#/components/responses/InternalServerError'
 
 components:
 
@@ -287,14 +286,14 @@ components:
           page: 1
           pageSize: 10
           totalPages: 2
-        data:                    
+        data:
           - id: efdbb9d1-02c2-4bc3-afb7-6788d8782b1e
             name: Kin Lane
             description: My name is Kin Lane. I am a writer, storyteller, and forever recovering technologist. If you’ve heard of my name before, you probably know me as the API Evangelist, covering the technology, business, people, and policies of APIs.
-            email: kin@apievangelist.com    
+            email: kin@apievangelist.com
         links:
           self: https://api.example.com/persons
-          next: https://api.example.com/persons?page=2  
+          next: https://api.example.com/persons?page=2
 
     SinglePerson:
       value:
@@ -302,19 +301,19 @@ components:
           page: 1
           pageSize: 10
           totalPages: 2
-        data:                    
+        data:
           id: efdbb9d1-02c2-4bc3-afb7-6788d8782b1e
           name: Kin Lane
           description: My name is Kin Lane. I am a writer, storyteller, and forever recovering technologist. If you’ve heard of my name before, you probably know me as the API Evangelist, covering the technology, business, people, and policies of APIs.
-          email: kin@apievangelist.com    
+          email: kin@apievangelist.com
         links:
-          self: https://api.example.com/persons      
+          self: https://api.example.com/persons
 
     Person:
-      value:              
+      value:
         name: Kin Lane
         description: My name is Kin Lane. I am a writer, storyteller, and forever recovering technologist. If you’ve heard of my name before, you probably know me as the API Evangelist, covering the technology, business, people, and policies of APIs.
-        email: kin@apievangelist.com               
+        email: kin@apievangelist.com
 
   securitySchemes:
     apiKeys:
@@ -324,18 +323,18 @@ components:
 
   parameters:
 
-    PersonId: 
-        name: personId
-        in: path
-        required: true
-        description: The ID of the person to retrieve.
-        schema:
-          type: string
-          format: uuid
-          minLength: 36
-          maxLength: 36     
-          pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$     
-        example: 1725ff48-ab45-4bb5-9d02-88745177dedb             
+    PersonId:
+      name: personId
+      in: path
+      required: true
+      description: The ID of the person to retrieve.
+      schema:
+        type: string
+        format: uuid
+        minLength: 36
+        maxLength: 36
+        pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+      example: 1725ff48-ab45-4bb5-9d02-88745177dedb
 
   schemas:
 
@@ -348,14 +347,14 @@ components:
         - links
       properties:
         meta:
-          $ref: '#/components/schemas/Meta'             
+          $ref: '#/components/schemas/Meta'
         data:
           description: The wrapper for a collection is an array of objects.
           type: array
           maxItems: 100
           minItems: 1
           items:
-            $ref: '#/components/schemas/Person'            
+            $ref: '#/components/schemas/Person'
         links:
           $ref: '#/components/schemas/LinksPagination'
       xml:
@@ -367,16 +366,16 @@ components:
       required:
         - meta
         - data
-        - links      
+        - links
       properties:
         meta:
-          $ref: '#/components/schemas/Meta'        
+          $ref: '#/components/schemas/Meta'
         data:
-          $ref: '#/components/schemas/Person'                   
+          $ref: '#/components/schemas/Person'
         links:
-          $ref: '#/components/schemas/LinksSelf'                   
+          $ref: '#/components/schemas/LinksSelf'
       xml:
-        name: data    
+        name: data
 
     LinksSelf:
       type: object
@@ -389,7 +388,7 @@ components:
           description: A URL to person returned.
           format: uri
           minLength: 10
-          maxLength: 2048   
+          maxLength: 2048
 
     Meta:
       type: object
@@ -402,18 +401,18 @@ components:
           type: integer
           description: The page represented in response.
           minLength: 1
-          maxLength: 1000    
+          maxLength: 1000
         pageSize:
           type: integer
           minLength: 1
-          maxLength: 1000  
+          maxLength: 1000
           description: The overall page size limits.
         totalPages:
           type: integer
           description: The total number of pages.
           minLength: 1
-          maxLength: 1000                                
-                  
+          maxLength: 1000
+
     LinksPagination:
       type: object
       description: The handling of each page.
@@ -423,13 +422,13 @@ components:
           description: The next page in results.
           format: uri
           minLength: 10
-          maxLength: 2048            
+          maxLength: 2048
         prev:
           type: string
           description: The previous page in results.
           format: uri
           minLength: 10
-          maxLength: 2048           
+          maxLength: 2048
 
     Person:
       type: object
@@ -447,7 +446,7 @@ components:
           minLength: 36
           maxLength: 36
           pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
-          example: efdbb9d1-02c2-4bc3-afb7-6788d8782b1e      
+          example: efdbb9d1-02c2-4bc3-afb7-6788d8782b1e
         name:
           type: integer
           description: Name of the person.
@@ -458,14 +457,14 @@ components:
           type: string
           description: The description of the person.
           minLength: 10
-          maxLength: 2500          
+          maxLength: 2500
           example: The peson behind API Evangelist.
         email:
           type: string
           description: An email for the person.
           minLength: 10
-          maxLength: 2048          
-          example: 'info@example.com'                                
+          maxLength: 2048
+          example: 'info@example.com'
 
     Problem:
       type: object
@@ -482,31 +481,31 @@ components:
           description: A URI reference that identifies the problem type
           example: https://example.com/probs/out-of-credit
           minLength: 10
-          maxLength: 2048            
+          maxLength: 2048
         title:
           type: string
           description: A short, human-readable summary of the problem type
           example: You do not have enough credit.
           minLength: 10
-          maxLength: 250            
+          maxLength: 250
         detail:
           type: string
           description: A human-readable explanation specific to this occurrence of the problem
           example: Your current balance is 30, but that costs 50.
           minLength: 10
-          maxLength: 1000            
+          maxLength: 1000
         instance:
           type: string
           description: A URI reference that identifies the specific occurrence of the problem
           example: /account/12345/msgs/abc
           minLength: 10
-          maxLength: 250            
+          maxLength: 250
         status:
           type: integer
           description: The HTTP status code
-          example: 400        
+          example: 400
           minLength: 3
-          maxLength: 3                 
+          maxLength: 3
 
   headers:
 
@@ -518,11 +517,11 @@ components:
       schema:
         type: string
         minLength: 10
-        maxLength: 250  
+        maxLength: 250
         example: limit=10, remaining=0, reset=10
 
     Retry-After:
-      description: | 
+      description: |
         The Retry-After header indicates how long the user agent should wait before making a follow-up request. 
         The value is in seconds and can be an integer or a date in the future. 
         If the value is an integer, it indicates the number of seconds to wait. 
@@ -530,7 +529,7 @@ components:
       schema:
         type: string
         minLength: 10
-        maxLength: 250          
+        maxLength: 250
       examples:
         integer:
           value: '120'
