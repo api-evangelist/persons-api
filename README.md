@@ -5,9 +5,9 @@ This is a template APIs.json for a persons API, to be used in storytelling, trai
 
 ## Scope
 
-- **Type:** Template 
-- **Position:** Consuming 
-- **Access:** 3rd-Party 
+- **Type:** Template
+- **Position:** Consuming
+- **Access:** 3rd-Party
 
 ## Tags:
 
@@ -15,8 +15,8 @@ This is a template APIs.json for a persons API, to be used in storytelling, trai
 
 ## Timestamps
 
-- **Created:** 2024-12-29 
-- **Modified:** 2024-12-29 
+- **Created:** 2024-12-29
+- **Modified:** 2026-04-28
 
 ## APIs
 
