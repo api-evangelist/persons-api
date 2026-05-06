@@ -1,0 +1,215 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Persons API
+  description: This is a template APIs.json for a persons API, to be used in storytelling, training, and knowledge bases.
+  tags:
+  - Persons
+  - Api
+  - API
+  created: '2026-05-06'
+  modified: '2026-05-06'
+capability:
+  consumes:
+  - type: http
+    namespace: persons-api
+    baseUri: https://api.example.com
+    description: Persons API HTTP API.
+    authentication:
+      type: apikey
+      in: header
+      name: api-key
+      value: '{{PERSONS_API_TOKEN}}'
+    resources:
+    - name: persons
+      path: /persons
+      operations:
+      - name: getpersons
+        method: GET
+        description: Retrieves Persons
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createperson
+        method: POST
+        description: Persons Create Person
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: persons-personid
+      path: /persons/{personId}
+      operations:
+      - name: getperson
+        method: GET
+        description: Persons Retrieve Person
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updateperson
+        method: PUT
+        description: Persons Update Person
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: deleteperson
+        method: DELETE
+        description: Persons Delete Person
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: persons-personid-cancle
+      path: /persons/{personId}/cancle
+      operations:
+      - name: sendperson
+        method: PUT
+        description: Persons Cancel Person
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    port: 8080
+    namespace: persons-api-rest
+    description: REST adapter for Persons API.
+    resources:
+    - path: /persons
+      name: getpersons
+      operations:
+      - method: GET
+        name: getpersons
+        description: Retrieves Persons
+        call: persons-api.getpersons
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /persons
+      name: createperson
+      operations:
+      - method: POST
+        name: createperson
+        description: Persons Create Person
+        call: persons-api.createperson
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /persons/{personId}
+      name: getperson
+      operations:
+      - method: GET
+        name: getperson
+        description: Persons Retrieve Person
+        call: persons-api.getperson
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /persons/{personId}
+      name: updateperson
+      operations:
+      - method: PUT
+        name: updateperson
+        description: Persons Update Person
+        call: persons-api.updateperson
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /persons/{personId}
+      name: deleteperson
+      operations:
+      - method: DELETE
+        name: deleteperson
+        description: Persons Delete Person
+        call: persons-api.deleteperson
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /persons/{personId}/cancle
+      name: sendperson
+      operations:
+      - method: PUT
+        name: sendperson
+        description: Persons Cancel Person
+        call: persons-api.sendperson
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    port: 9090
+    namespace: persons-api-mcp
+    transport: http
+    description: MCP adapter for Persons API for AI agent use.
+    tools:
+    - name: getpersons
+      description: Retrieves Persons
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: persons-api.getpersons
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: createperson
+      description: Persons Create Person
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: persons-api.createperson
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getperson
+      description: Persons Retrieve Person
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: persons-api.getperson
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: updateperson
+      description: Persons Update Person
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: persons-api.updateperson
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: deleteperson
+      description: Persons Delete Person
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: persons-api.deleteperson
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: sendperson
+      description: Persons Cancel Person
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: persons-api.sendperson
+      outputParameters:
+      - type: object
+        mapping: $.
+binds:
+- namespace: env
+  keys:
+    PERSONS_API_TOKEN: PERSONS_API_TOKEN
