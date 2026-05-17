@@ -1,6 +1,6 @@
 aid: api-evangelist-persons
 name: Persons
-type: Template
+kind: template
 description: |-
   This is a template APIs.json for a persons API, to be used in storytelling, training, and knowledge bases.
 
