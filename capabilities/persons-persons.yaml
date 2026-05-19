@@ -1,24 +1,23 @@
 naftiko: 1.0.0-alpha2
 info:
-  label: Persons API
-  description: This is a template APIs.json for a persons API, to be used in storytelling, training, and knowledge bases.
+  label: Persons API — Persons
+  description: 'Persons API — Persons. 6 operations. Lead operation: Retrieves Persons. Self-contained Naftiko capability
+    covering one Persons Api business surface.'
   tags:
+  - Persons Api
   - Persons
-  - Api
-  - API
-  created: '2026-05-06'
-  modified: '2026-05-06'
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    PERSONS_API_API_KEY: PERSONS_API_API_KEY
 capability:
   consumes:
   - type: http
-    namespace: persons-api
+    namespace: persons-persons
     baseUri: https://api.example.com
-    description: Persons API HTTP API.
-    authentication:
-      type: apikey
-      in: header
-      name: api-key
-      value: '{{PERSONS_API_TOKEN}}'
+    description: Persons API — Persons business capability. Self-contained, no shared references.
     resources:
     - name: persons
       path: /persons
@@ -39,7 +38,13 @@ capability:
         - name: result
           type: object
           value: $.
-    - name: persons-personid
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: persons-personId
       path: /persons/{personId}
       operations:
       - name: getperson
@@ -58,6 +63,12 @@ capability:
         - name: result
           type: object
           value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
       - name: deleteperson
         method: DELETE
         description: Persons Delete Person
@@ -66,7 +77,7 @@ capability:
         - name: result
           type: object
           value: $.
-    - name: persons-personid-cancle
+    - name: persons-personId-cancle
       path: /persons/{personId}/cancle
       operations:
       - name: sendperson
@@ -77,139 +88,154 @@ capability:
         - name: result
           type: object
           value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: apikey
+      key: api-key
+      value: '{{env.PERSONS_API_API_KEY}}'
+      placement: header
   exposes:
   - type: rest
+    namespace: persons-persons-rest
     port: 8080
-    namespace: persons-api-rest
-    description: REST adapter for Persons API.
+    description: REST adapter for Persons API — Persons. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
     resources:
-    - path: /persons
-      name: getpersons
+    - path: /v1/persons
+      name: persons
+      description: REST surface for persons.
       operations:
       - method: GET
         name: getpersons
         description: Retrieves Persons
-        call: persons-api.getpersons
+        call: persons-persons.getpersons
         outputParameters:
         - type: object
           mapping: $.
-    - path: /persons
-      name: createperson
-      operations:
       - method: POST
         name: createperson
         description: Persons Create Person
-        call: persons-api.createperson
+        call: persons-persons.createperson
+        with:
+          body: rest.body
         outputParameters:
         - type: object
           mapping: $.
-    - path: /persons/{personId}
-      name: getperson
+    - path: /v1/persons/{personid}
+      name: persons-personid
+      description: REST surface for persons-personId.
       operations:
       - method: GET
         name: getperson
         description: Persons Retrieve Person
-        call: persons-api.getperson
+        call: persons-persons.getperson
         outputParameters:
         - type: object
           mapping: $.
-    - path: /persons/{personId}
-      name: updateperson
-      operations:
       - method: PUT
         name: updateperson
         description: Persons Update Person
-        call: persons-api.updateperson
+        call: persons-persons.updateperson
+        with:
+          body: rest.body
         outputParameters:
         - type: object
           mapping: $.
-    - path: /persons/{personId}
-      name: deleteperson
-      operations:
       - method: DELETE
         name: deleteperson
         description: Persons Delete Person
-        call: persons-api.deleteperson
+        call: persons-persons.deleteperson
         outputParameters:
         - type: object
           mapping: $.
-    - path: /persons/{personId}/cancle
-      name: sendperson
+    - path: /v1/persons/{personid}/cancle
+      name: persons-personid-cancle
+      description: REST surface for persons-personId-cancle.
       operations:
       - method: PUT
         name: sendperson
         description: Persons Cancel Person
-        call: persons-api.sendperson
+        call: persons-persons.sendperson
+        with:
+          body: rest.body
         outputParameters:
         - type: object
           mapping: $.
   - type: mcp
+    namespace: persons-persons-mcp
     port: 9090
-    namespace: persons-api-mcp
     transport: http
-    description: MCP adapter for Persons API for AI agent use.
+    description: MCP adapter for Persons API — Persons. One tool per consumed operation, routed inline through this capability's
+      consumes block.
     tools:
-    - name: getpersons
+    - name: retrieves-persons
       description: Retrieves Persons
       hints:
         readOnly: true
         destructive: false
         idempotent: true
-      call: persons-api.getpersons
+      call: persons-persons.getpersons
       outputParameters:
       - type: object
         mapping: $.
-    - name: createperson
+    - name: persons-create-person
       description: Persons Create Person
       hints:
         readOnly: false
         destructive: false
         idempotent: false
-      call: persons-api.createperson
+      call: persons-persons.createperson
+      with:
+        body: tools.body
       outputParameters:
       - type: object
         mapping: $.
-    - name: getperson
+    - name: persons-retrieve-person
       description: Persons Retrieve Person
       hints:
         readOnly: true
         destructive: false
         idempotent: true
-      call: persons-api.getperson
+      call: persons-persons.getperson
       outputParameters:
       - type: object
         mapping: $.
-    - name: updateperson
+    - name: persons-update-person
       description: Persons Update Person
       hints:
         readOnly: false
         destructive: false
         idempotent: true
-      call: persons-api.updateperson
+      call: persons-persons.updateperson
+      with:
+        body: tools.body
       outputParameters:
       - type: object
         mapping: $.
-    - name: deleteperson
+    - name: persons-delete-person
       description: Persons Delete Person
       hints:
         readOnly: false
         destructive: true
         idempotent: true
-      call: persons-api.deleteperson
+      call: persons-persons.deleteperson
       outputParameters:
       - type: object
         mapping: $.
-    - name: sendperson
+    - name: persons-cancel-person
       description: Persons Cancel Person
       hints:
         readOnly: false
         destructive: false
         idempotent: true
-      call: persons-api.sendperson
+      call: persons-persons.sendperson
+      with:
+        body: tools.body
       outputParameters:
       - type: object
         mapping: $.
-binds:
-- namespace: env
-  keys:
-    PERSONS_API_TOKEN: PERSONS_API_TOKEN
