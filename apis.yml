@@ -35,6 +35,8 @@ apis:
       - FN: API Evangelist
         email: info@apievangelist.com
 common:
+  - type: AgenticAccess
+    url: agentic-access/persons-api-agentic-access.yml
   - type: Authentication
     url: authentication/persons-api-authentication.yml
   - type: Website
