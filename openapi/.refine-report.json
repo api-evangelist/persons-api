@@ -1,0 +1,14 @@
+{
+  "provider": "persons-api",
+  "sources": [
+    "persons-api-persons-api-openapi.yml"
+  ],
+  "outputs": [
+    "persons-api-persons-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
