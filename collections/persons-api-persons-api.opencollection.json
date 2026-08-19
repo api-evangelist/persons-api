@@ -1,0 +1,164 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Persons API",
+    "version": "0.1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Persons",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieves Persons",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.example.com/persons",
+            "auth": {
+              "type": "apikey",
+              "key": "api-key",
+              "value": "{{api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns a list of all persons for the authenticated user."
+        },
+        {
+          "info": {
+            "name": "Persons Create Person",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.example.com/persons",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "api-key",
+              "value": "{{api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Creating a new person for sending to a recipient."
+        },
+        {
+          "info": {
+            "name": "Persons Retrieve Person",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.example.com/persons/:personId",
+            "params": [
+              {
+                "name": "personId",
+                "value": "1725ff48-ab45-4bb5-9d02-88745177dedb",
+                "type": "path",
+                "description": "The ID of the person to retrieve."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "api-key",
+              "value": "{{api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns the details of a specific person."
+        },
+        {
+          "info": {
+            "name": "Persons Update Person",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.example.com/persons/:personId",
+            "params": [
+              {
+                "name": "personId",
+                "value": "1725ff48-ab45-4bb5-9d02-88745177dedb",
+                "type": "path",
+                "description": "The ID of the person to retrieve."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "api-key",
+              "value": "{{api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Updates a single person."
+        },
+        {
+          "info": {
+            "name": "Persons Delete Person",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.example.com/persons/:personId",
+            "params": [
+              {
+                "name": "personId",
+                "value": "1725ff48-ab45-4bb5-9d02-88745177dedb",
+                "type": "path",
+                "description": "The ID of the person to retrieve."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "api-key",
+              "value": "{{api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Deletes a person."
+        },
+        {
+          "info": {
+            "name": "Persons Cancel Person",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.example.com/persons/:personId/cancle",
+            "params": [
+              {
+                "name": "personId",
+                "value": "1725ff48-ab45-4bb5-9d02-88745177dedb",
+                "type": "path",
+                "description": "The ID of the person to retrieve."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "api-key",
+              "value": "{{api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Cancels a single person."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
