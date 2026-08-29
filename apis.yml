@@ -2,6 +2,17 @@ aid: persons-api
 name: Persons
 kind: template
 description: This is a template APIs.json for a persons API, to be used in storytelling, training, and knowledge bases.
+deliveryModel:
+  model: unknown
+  open_source: false
+  commercial: false
+  callable_host: false
+  label: Delivery model not determined — needs a product licence on record
+  confidence: low
+  source:
+  - openapi
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: freemium
   onboarding: self-serve
