@@ -1,12 +1,9 @@
 aid: persons-api
 name: Persons
-# x-type: index -- a TEMPLATE/demo APIs.json, not a company (roadmap#402, first reported
-# in roadmap#66 two months ago). The record's own description says it exists 'for
-# storytelling, training and knowledge bases'. It was being scored and ranked as a
-# provider on apievangelist.com, this catalog's own domain.
 x-type: index
 kind: template
-description: This is a template APIs.json for a persons API, to be used in storytelling, training, and knowledge bases.
+description: This is a template APIs.json for a persons API, to be used in storytelling, training, and
+  knowledge bases.
 deliveryModel:
   model: unknown
   open_source: false
@@ -34,15 +31,15 @@ accessModel:
   method: derived
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/persons-api.png
 tags:
-  - Application Programming Interface
-  - Persons
+- Application Programming Interface
+- Persons
 created: '2024-12-29'
-modified: '2026-05-19'
+modified: '2026-09-16'
 url: http://example.com/apis.json
 specificationVersion: '0.23'
 apis:
 - aid: persons-api:persons-api-persons-api
-  name: Persons Persons API
+  name: Persons API
   description: Placing and managing of persons placed for persons.
   humanURL: https://example.com/apis.yml
   baseURL: http://apis.example.com
@@ -60,12 +57,12 @@ apis:
   - type: ChangeLog
     url: http://example.com/change-log
 common:
-  - type: AgenticAccess
-    url: agentic-access/persons-api-agentic-access.yml
-  - type: Authentication
-    url: authentication/persons-api-authentication.yml
-  - type: Website
-    url: http://apievangelist.com
+- type: AgenticAccess
+  url: agentic-access/persons-api-agentic-access.yml
+- type: Authentication
+  url: authentication/persons-api-authentication.yml
+- type: Website
+  url: http://apievangelist.com
 maintainers:
-  - FN: API Evangelist
-    email: info@apievangelist.com
+- FN: API Evangelist
+  email: info@apievangelist.com
