@@ -1,9 +1,7 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   title: Persons API
-  description: 'This is a template APIs.json for a persons API, to be used in storytelling, training, and knowledge bases.
-
-    '
+  description: This is a template APIs.json for a persons API, to be used in storytelling, training, and knowledge bases.
   version: 0.1.0
   contact:
     name: API Evangelist
@@ -19,9 +17,7 @@ servers:
   description: Personion
 tags:
 - name: Persons
-  description: 'Placing and managing of persons placed for persons.
-
-    '
+  description: Placing and managing of persons placed for persons.
 paths:
   /persons:
     get:
@@ -259,7 +255,62 @@ paths:
         '500':
           $ref: '#/components/responses/InternalServerError'
 components:
+  examples:
+    Person:
+      value:
+        name: Kin Lane
+        description: My name is Kin Lane. I am a writer, storyteller, and forever recovering technologist. If you’ve heard of my name before, you probably know me as the API Evangelist, covering the technology, business, people, and policies of APIs.
+        email: kin@apievangelist.com
+    PersonCollection:
+      value:
+        meta:
+          page: 1
+          pageSize: 10
+          totalPages: 2
+        data:
+        - id: efdbb9d1-02c2-4bc3-afb7-6788d8782b1e
+          name: Kin Lane
+          description: My name is Kin Lane. I am a writer, storyteller, and forever recovering technologist. If you’ve heard of my name before, you probably know me as the API Evangelist, covering the technology, business, people, and policies of APIs.
+          email: kin@apievangelist.com
+        links:
+          self: https://api.example.com/persons
+          next: https://api.example.com/persons?page=2
+    SinglePerson:
+      value:
+        meta:
+          page: 1
+          pageSize: 10
+          totalPages: 2
+        data:
+          id: efdbb9d1-02c2-4bc3-afb7-6788d8782b1e
+          name: Kin Lane
+          description: My name is Kin Lane. I am a writer, storyteller, and forever recovering technologist. If you’ve heard of my name before, you probably know me as the API Evangelist, covering the technology, business, people, and policies of APIs.
+          email: kin@apievangelist.com
+        links:
+          self: https://api.example.com/persons
   responses:
+    BadRequest:
+      description: Bad Request
+      headers:
+        RateLimit:
+          $ref: '#/components/headers/RateLimit'
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/Problem'
+          example:
+            type: https://example.com/errors/bad-request
+            title: Bad Request
+            status: 400
+            detail: The request is invalid or missing required parameters.
+        application/problem+xml:
+          schema:
+            $ref: '#/components/schemas/Problem'
+          example:
+            type: https://example.com/errors/bad-request
+            title: Bad Request
+            status: 400
+            detail: The request is invalid or missing required parameters.
     Forbidden:
       description: Forbidden
       headers:
@@ -282,6 +333,28 @@ components:
             title: Forbidden
             status: 403
             detail: Access is forbidden with the provided credentials.
+    InternalServerError:
+      description: Internal Server Error
+      headers:
+        RateLimit:
+          $ref: '#/components/headers/RateLimit'
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/Problem'
+          example:
+            type: https://example.com/errors/internal-server-error
+            title: Internal Server Error
+            status: 500
+            detail: An unexpected error occurred.
+        application/problem+xml:
+          schema:
+            $ref: '#/components/schemas/Problem'
+          example:
+            type: https://example.com/errors/internal-server-error
+            title: Internal Server Error
+            status: 500
+            detail: An unexpected error occurred.
     TooManyRequests:
       description: Too Many Requests
       headers:
@@ -306,28 +379,6 @@ components:
             title: Too Many Requests
             status: 429
             detail: You have exceeded the rate limit.
-    NotFound:
-      description: Not Found
-      headers:
-        RateLimit:
-          $ref: '#/components/headers/RateLimit'
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/Problem'
-          example:
-            type: https://example.com/errors/not-found
-            title: Not Found
-            status: 404
-            detail: The requested resource was not found.
-        application/problem+xml:
-          schema:
-            $ref: '#/components/schemas/Problem'
-          example:
-            type: https://example.com/errors/not-found
-            title: Not Found
-            status: 404
-            detail: The requested resource was not found.
     Conflict:
       description: Conflict
       headers:
@@ -350,6 +401,28 @@ components:
             title: Conflict
             status: 409
             detail: There is a conflict with an existing resource.
+    NotFound:
+      description: Not Found
+      headers:
+        RateLimit:
+          $ref: '#/components/headers/RateLimit'
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/Problem'
+          example:
+            type: https://example.com/errors/not-found
+            title: Not Found
+            status: 404
+            detail: The requested resource was not found.
+        application/problem+xml:
+          schema:
+            $ref: '#/components/schemas/Problem'
+          example:
+            type: https://example.com/errors/not-found
+            title: Not Found
+            status: 404
+            detail: The requested resource was not found.
     Unauthorized:
       description: Unauthorized
       headers:
@@ -372,78 +445,28 @@ components:
             title: Unauthorized
             status: 401
             detail: You do not have the necessary permissions.
-    BadRequest:
-      description: Bad Request
-      headers:
-        RateLimit:
-          $ref: '#/components/headers/RateLimit'
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/Problem'
-          example:
-            type: https://example.com/errors/bad-request
-            title: Bad Request
-            status: 400
-            detail: The request is invalid or missing required parameters.
-        application/problem+xml:
-          schema:
-            $ref: '#/components/schemas/Problem'
-          example:
-            type: https://example.com/errors/bad-request
-            title: Bad Request
-            status: 400
-            detail: The request is invalid or missing required parameters.
-    InternalServerError:
-      description: Internal Server Error
-      headers:
-        RateLimit:
-          $ref: '#/components/headers/RateLimit'
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/Problem'
-          example:
-            type: https://example.com/errors/internal-server-error
-            title: Internal Server Error
-            status: 500
-            detail: An unexpected error occurred.
-        application/problem+xml:
-          schema:
-            $ref: '#/components/schemas/Problem'
-          example:
-            type: https://example.com/errors/internal-server-error
-            title: Internal Server Error
-            status: 500
-            detail: An unexpected error occurred.
-  headers:
-    RateLimit:
-      description: 'The RateLimit header communicates quota policies. It contains a `limit` to
-
-        convey the expiring limit, `remaining` to convey the remaining quota units,
-
-        and `reset` to convey the time window reset time.
-
-        '
-      schema:
-        type: string
-        minLength: 10
-        maxLength: 250
-        example: limit=10, remaining=0, reset=10
-    Retry-After:
-      description: "The Retry-After header indicates how long the user agent should wait before making a follow-up request. \nThe value is in seconds and can be an integer or a date in the future. \nIf the value is an integer, it indicates the number of seconds to wait. \nIf the value is a date, it indicates the time at which the user agent should make a follow-up request. \n"
-      schema:
-        type: string
-        minLength: 10
-        maxLength: 250
-      examples:
-        integer:
-          value: '120'
-          summary: Retry after 120 seconds
-        date:
-          value: Fri, 31 Dec 2021 23:59:59 GMT
-          summary: Retry after the specified date
   schemas:
+    WrapperResponseCollection:
+      description: This is a generic request/response wrapper which contains both data and links which serve as hypermedia controls (HATEOAS).
+      type: object
+      required:
+      - meta
+      - data
+      - links
+      properties:
+        meta:
+          $ref: '#/components/schemas/Meta'
+        data:
+          description: The wrapper for a collection is an array of objects.
+          type: array
+          maxItems: 100
+          minItems: 1
+          items:
+            $ref: '#/components/schemas/Person'
+        links:
+          $ref: '#/components/schemas/LinksPagination'
+      xml:
+        name: data
     Person:
       type: object
       description: A Schema.org compliant person object.
@@ -479,28 +502,18 @@ components:
           minLength: 10
           maxLength: 2048
           example: info@example.com
-    Meta:
+    LinksSelf:
       type: object
-      description: The metadata for each response.
+      description: A link to reference each person.
       required:
-      - page
-      - totalPages
+      - self
       properties:
-        page:
-          type: integer
-          description: The page represented in response.
-          minLength: 1
-          maxLength: 1000
-        pageSize:
-          type: integer
-          minLength: 1
-          maxLength: 1000
-          description: The overall page size limits.
-        totalPages:
-          type: integer
-          description: The total number of pages.
-          minLength: 1
-          maxLength: 1000
+        self:
+          type: string
+          description: A URL to person returned.
+          format: uri
+          minLength: 10
+          maxLength: 2048
     WrapperResponseObject:
       description: This is a generic request/response wrapper which contains both data and links which serve as hypermedia controls (HATEOAS).
       type: object
@@ -517,34 +530,6 @@ components:
           $ref: '#/components/schemas/LinksSelf'
       xml:
         name: data
-    LinksSelf:
-      type: object
-      description: A link to reference each person.
-      required:
-      - self
-      properties:
-        self:
-          type: string
-          description: A URL to person returned.
-          format: uri
-          minLength: 10
-          maxLength: 2048
-    LinksPagination:
-      type: object
-      description: The handling of each page.
-      properties:
-        next:
-          type: string
-          description: The next page in results.
-          format: uri
-          minLength: 10
-          maxLength: 2048
-        prev:
-          type: string
-          description: The previous page in results.
-          format: uri
-          minLength: 10
-          maxLength: 2048
     Problem:
       type: object
       description: This is a Problem Details for HTTP APIs object.
@@ -585,60 +570,44 @@ components:
           example: 400
           minLength: 3
           maxLength: 3
-    WrapperResponseCollection:
-      description: This is a generic request/response wrapper which contains both data and links which serve as hypermedia controls (HATEOAS).
+    Meta:
       type: object
+      description: The metadata for each response.
       required:
-      - meta
-      - data
-      - links
+      - page
+      - totalPages
       properties:
-        meta:
-          $ref: '#/components/schemas/Meta'
-        data:
-          description: The wrapper for a collection is an array of objects.
-          type: array
-          maxItems: 100
-          minItems: 1
-          items:
-            $ref: '#/components/schemas/Person'
-        links:
-          $ref: '#/components/schemas/LinksPagination'
-      xml:
-        name: data
-  examples:
-    Person:
-      value:
-        name: Kin Lane
-        description: My name is Kin Lane. I am a writer, storyteller, and forever recovering technologist. If you’ve heard of my name before, you probably know me as the API Evangelist, covering the technology, business, people, and policies of APIs.
-        email: kin@apievangelist.com
-    SinglePerson:
-      value:
-        meta:
-          page: 1
-          pageSize: 10
-          totalPages: 2
-        data:
-          id: efdbb9d1-02c2-4bc3-afb7-6788d8782b1e
-          name: Kin Lane
-          description: My name is Kin Lane. I am a writer, storyteller, and forever recovering technologist. If you’ve heard of my name before, you probably know me as the API Evangelist, covering the technology, business, people, and policies of APIs.
-          email: kin@apievangelist.com
-        links:
-          self: https://api.example.com/persons
-    PersonCollection:
-      value:
-        meta:
-          page: 1
-          pageSize: 10
-          totalPages: 2
-        data:
-        - id: efdbb9d1-02c2-4bc3-afb7-6788d8782b1e
-          name: Kin Lane
-          description: My name is Kin Lane. I am a writer, storyteller, and forever recovering technologist. If you’ve heard of my name before, you probably know me as the API Evangelist, covering the technology, business, people, and policies of APIs.
-          email: kin@apievangelist.com
-        links:
-          self: https://api.example.com/persons
-          next: https://api.example.com/persons?page=2
+        page:
+          type: integer
+          description: The page represented in response.
+          minLength: 1
+          maxLength: 1000
+        pageSize:
+          type: integer
+          minLength: 1
+          maxLength: 1000
+          description: The overall page size limits.
+        totalPages:
+          type: integer
+          description: The total number of pages.
+          minLength: 1
+          maxLength: 1000
+    LinksPagination:
+      type: object
+      description: The handling of each page.
+      properties:
+        next:
+          type: string
+          description: The next page in results.
+          format: uri
+          minLength: 10
+          maxLength: 2048
+        prev:
+          type: string
+          description: The previous page in results.
+          format: uri
+          minLength: 10
+          maxLength: 2048
   parameters:
     PersonId:
       name: personId
@@ -652,6 +621,33 @@ components:
         maxLength: 36
         pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
       example: 1725ff48-ab45-4bb5-9d02-88745177dedb
+  headers:
+    RateLimit:
+      description: 'The RateLimit header communicates quota policies. It contains a `limit` to
+
+        convey the expiring limit, `remaining` to convey the remaining quota units,
+
+        and `reset` to convey the time window reset time.
+
+        '
+      schema:
+        type: string
+        minLength: 10
+        maxLength: 250
+        example: limit=10, remaining=0, reset=10
+    Retry-After:
+      description: "The Retry-After header indicates how long the user agent should wait before making a follow-up request. \nThe value is in seconds and can be an integer or a date in the future. \nIf the value is an integer, it indicates the number of seconds to wait. \nIf the value is a date, it indicates the time at which the user agent should make a follow-up request. \n"
+      schema:
+        type: string
+        minLength: 10
+        maxLength: 250
+      examples:
+        integer:
+          value: '120'
+          summary: Retry after 120 seconds
+        date:
+          value: Fri, 31 Dec 2021 23:59:59 GMT
+          summary: Retry after the specified date
   securitySchemes:
     apiKeys:
       type: apiKey
