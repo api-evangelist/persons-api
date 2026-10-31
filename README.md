@@ -1,4 +1,4 @@
-# Persons (api-evangelist-persons)
+# persons-api
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,49 +64,22 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-This is a template APIs.json for a persons API, to be used in storytelling, training, and knowledge bases.
+## persons-api on APIs.io
 
-**APIs.json:** [http://example.com/apis.json](http://example.com/apis.json)
+Everything profiled for persons-api is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/persons-api/](https://apis.io/providers/persons-api/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+## API Evangelist rating
 
-- Application Programming Interface
-- Persons
+Not yet rated. See [apis.io/providers/persons-api/](https://apis.io/providers/persons-api/).
 
-## Timestamps
+## How this profile is made
 
-- **Created:** 2024-12-29
-- **Modified:** 2026-05-19
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
 
-## APIs
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for persons-api: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
 
-### Persons API.
+## Open an issue
 
-A demo persons API.
-
-- **Human URL:** [https://example.com/apis.yml](https://example.com/apis.yml)
-- **Base URL:** `http://apis.example.com`
-
-#### Tags
-
-- Application Programming Interface
-- Persons
-
-#### Properties
-
-- [Documentation](http://example.com/documentation)
-- [OpenAPI](openapi/persons-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/persons-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/persons-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Authentication](http://example.com/authentication)
-- [Getting Started](http://example.com/getting-started)
-- [Changelog](http://example.com/change-log)
-
-## Common Properties
-
-- [Website](http://apievangelist.com)
-
-## Maintainers
-
-**FN:** API Evangelist
-**Email:** info@apievangelist.com
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/persons-api/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
